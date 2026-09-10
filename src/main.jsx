@@ -3,50 +3,101 @@ import { createRoot } from 'react-dom/client'
 import './styles.css'
 
 const stats=[['Height','175 cm'],['Bust','32 in'],['Waist','28 in'],['Hips','36 in'],['Shoe','EU 42'],['Eyes','Brown'],['Hair','Black']]
+
+const homeCollage=[
+ {src:'/images/pics/IMG-20250713-WA0121.jpg',className:'home-a',alt:'Samuella runway portrait'},
+ {src:'/images/pics/IMG-20250801-WA0152.jpg',className:'home-b',alt:'Samuella fashion portrait'},
+ {src:'/images/pics/IMG-20251024-WA0329.jpg',className:'home-c',alt:'Samuella beauty portrait'},
+ {src:'/images/pics/IMG-20250801-WA0155.jpg',className:'home-d',alt:'Samuella editorial portrait'}
+]
+
 const gallery=[
-{src:'/images/pics/IMG-20250713-WA0121.jpg',title:'Runway',note:'Fashion shows & presentations'},
-{src:'/images/pics/IMG-20250801-WA0154.jpg',title:'Beauty',note:'Beauty & portrait'},
-{src:'/images/pics/I38A9558.jpg',title:'Editorial',note:'Editorial storytelling'},
-{src:'/images/pics/IMG_0984.JPG',title:'Fashion',note:'Designer looks & lookbooks'},
-{src:'/images/pics/IMG_4210.JPG',title:'Campaign',note:'Brand & creative campaigns'},
-{src:'/images/pics/IMG_6031.JPG',title:'Commercial',note:'TVC & commercial work'}]
+ {src:'/images/pics/IMG-20250713-WA0121.jpg',title:'Runway',note:'Selected runway work'},
+ {src:'/images/pics/IMG-20251024-WA0331.jpg',title:'Editorial',note:'Fashion editorial'},
+ {src:'/images/pics/IMG-20250801-WA0154.jpg',title:'Beauty',note:'Beauty portrait'},
+ {src:'/images/pics/IMG-20250801-WA0155.jpg',title:'Beauty',note:'Beauty portrait'},
+ {src:'/images/pics/I38A9558.jpg',title:'Fashion',note:'Studio fashion'},
+ {src:'/images/pics/I38A9643.jpg',title:'Fashion',note:'Studio fashion'},
+ {src:'/images/pics/IMG_0944.JPG',title:'Editorial',note:'Creative portrait'},
+ {src:'/images/pics/IMG_0984.JPG',title:'Fashion',note:'Designer look'},
+ {src:'/images/pics/IMG_0987.JPG',title:'Fashion',note:'Designer look'}
+]
+
+const chapters=[
+ {title:'Runway',subtitle:'Shows & presentations',image:'/images/pics/IMG-20250713-WA0121.jpg'},
+ {title:'Editorial',subtitle:'Fashion stories',image:'/images/pics/IMG-20251024-WA0331.jpg'},
+ {title:'Beauty',subtitle:'Portrait & beauty',image:'/images/pics/IMG-20250801-WA0154.jpg'}
+]
+
 const digitals=[
-{src:'/images/pics/IMG_0511.JPG',label:'Three-quarter'},
-{src:'/images/pics/IMG_0512.JPG',label:'Full length'},
-{src:'/images/pics/IMG_0510.JPG',label:'Full length'},
-{src:'/images/pics/IMG_0519.JPG',label:'Portrait'},
-{src:'/images/pics/IMG_0518.JPG',label:'Profile'}]
+ {src:'/images/pics/IMG_0511.JPG',label:'Three-quarter'},
+ {src:'/images/pics/IMG_0512.JPG',label:'Full length'},
+ {src:'/images/pics/IMG_0519.JPG',label:'Portrait'},
+ {src:'/images/pics/IMG_0518.JPG',label:'Profile'}
+]
+
 const clients=['SassyByEtty','Amostafiri','Awotiwa','The Dust of the Earth','Darling Hair']
 
-function Photo({src,alt,eager=false}){return <div className="photo"><img src={src} alt={alt} loading={eager?'eager':'lazy'} decoding="async" fetchPriority={eager?'high':'auto'}/></div>}
+function Photo({src,alt,className='',eager=false}){return <div className={`photo ${className}`}><img src={src} alt={alt} loading={eager?'eager':'lazy'} decoding="async" fetchPriority={eager?'high':'auto'}/></div>}
 
 function App(){
- const [open,setOpen]=useState(null); const [intro,setIntro]=useState(true)
- useEffect(()=>{const timer=setTimeout(()=>setIntro(false),1900);return()=>clearTimeout(timer)},[])
- useEffect(()=>{if(intro)return;const els=document.querySelectorAll('[data-reveal]');const ob=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');ob.unobserve(e.target)}}),{threshold:.1,rootMargin:'0px 0px -35px'});els.forEach(e=>ob.observe(e));return()=>ob.disconnect()},[intro])
+ const [open,setOpen]=useState(null)
+ const [intro,setIntro]=useState(true)
+ useEffect(()=>{const timer=setTimeout(()=>setIntro(false),2200);return()=>clearTimeout(timer)},[])
+ useEffect(()=>{if(intro)return;const els=document.querySelectorAll('[data-reveal]');const ob=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');ob.unobserve(e.target)}}),{threshold:.1,rootMargin:'0px 0px -30px'});els.forEach(e=>ob.observe(e));return()=>ob.disconnect()},[intro])
  useEffect(()=>{const key=e=>e.key==='Escape'&&setOpen(null);addEventListener('keydown',key);return()=>removeEventListener('keydown',key)},[])
+
  return <>
-  <div className={`intro-screen ${intro?'active':'leave'}`} aria-hidden={!intro}><div><h1>Samuella</h1><p>MODEL · CREATIVE · STORYTELLER</p></div></div>
+  <div className={`intro-screen ${intro?'active':'leave'}`} aria-hidden={!intro}><div className="intro-lockup"><h1>Samuella</h1><p>MODEL · LAGOS</p></div></div>
   <div className={`site ${intro?'site-wait':''}`}>
-   <header className="nav"><a className="brand" href="#top">SAMUELLA</a><nav><a href="#portfolio">Portfolio</a><a href="#about">About</a><a href="#digitals">Digitals</a><a href="#bookings">Bookings</a></nav><a className="instagram" href="https://www.instagram.com/yourgirl_samuella/" target="_blank" rel="noreferrer">Instagram ↗</a></header>
+   <header className="nav">
+    <div className="nav-left"><a href="#portfolio">Portfolio</a><a href="#about">About</a></div>
+    <a className="brand" href="#top">SAMUELLA</a>
+    <div className="nav-right"><a href="#digitals">Digitals</a><a href="#bookings">Bookings</a></div>
+   </header>
    <main id="top">
-    <section className="home"><div className="home-copy" data-reveal><p className="eyebrow">LAGOS · NIGERIA</p><h1>Fashion model.<br/><em>Distinct presence.</em></h1><p>Runway · Editorial · Beauty · Commercial</p><a href="#portfolio">View portfolio ↓</a></div></section>
+    <section className="home-stage">
+      <div className="home-collage" data-reveal>
+        {homeCollage.map((item,i)=><Photo key={item.src} src={item.src} alt={item.alt} className={item.className} eager={i<2}/>)}
+        <p className="collage-caption">SELECTED MODEL PORTFOLIO</p>
+      </div>
+    </section>
 
-    <section className="portfolio" id="portfolio"><div className="section-head" data-reveal><p className="section-kicker">01 / PORTFOLIO</p><div><h2>Selected <em>work.</em></h2><p>A considered selection of runway, beauty, editorial, fashion and commercial work.</p></div></div><div className="portfolio-grid">{gallery.map((item,i)=><button className="portfolio-card" key={item.title} onClick={()=>setOpen(i)} data-reveal><Photo src={item.src} alt={`${item.title} portfolio`}/><span className="card-label">{item.title}</span><small>{item.note}</small></button>)}</div></section>
+    <section className="portfolio" id="portfolio">
+      <div className="section-title" data-reveal><p className="section-kicker">01 / PORTFOLIO</p><h2>Selected <em>work.</em></h2><p>A focused edit of runway, editorial, beauty and fashion work.</p></div>
+      <div className="portfolio-grid">{gallery.map((item,i)=><button className="portfolio-card" key={`${item.title}-${i}`} onClick={()=>setOpen(i)} data-reveal><Photo src={item.src} alt={`${item.title} — ${item.note}`}/><div className="card-label"><span>{item.title}</span><small>{item.note}</small></div></button>)}</div>
+    </section>
 
-    <section className="about" id="about"><div className="about-copy" data-reveal><p className="section-kicker">02 / ABOUT</p><h2>Presence, poise,<br/>and a <em>distinct</em><br/>visual language.</h2><p className="lead">Samuella is a Lagos-based fashion model with 2+ years of experience across runway, editorial, beauty and commercial work.</p><p>Expressive and versatile, she brings intention to movement and understands how to translate a creative direction into a strong frame. Her approach is professional, collaborative and detail-aware — whether she is walking a runway, building a beauty story or representing a brand on camera.</p><p>Available for editorials, campaigns, lookbooks, beauty, runway, commercial/TVC projects and selected creative collaborations.</p><div className="about-links"><a href="#bookings">BOOK SAMUELLA ↗</a><a href="https://www.instagram.com/yourgirl_samuella/" target="_blank" rel="noreferrer">INSTAGRAM ↗</a></div></div><Photo src="/images/pics/I38A9643.jpg" alt="Samuella fashion portrait"/></section>
+    <section className="about" id="about">
+      <div className="about-inner" data-reveal>
+        <p className="section-kicker">02 / ABOUT</p>
+        <h2>Built for the frame.<br/><em>Ready for the brief.</em></h2>
+        <div className="about-copy"><p className="lead">Samuella is a Lagos-based fashion model with 2+ years of experience across runway, editorial, beauty and commercial work.</p><p>She brings a composed runway presence, expressive movement and a strong understanding of visual direction to every production. Comfortable in both still and motion-led work, she adapts quickly to creative briefs while keeping the garment, image and brand story at the centre of the performance.</p><p>Her portfolio spans fashion shows, editorials, beauty imagery, campaigns and commercial work, with a professional approach built around preparation, collaboration and consistency on set.</p></div>
+        <div className="about-tags"><span>Runway</span><span>Editorial</span><span>Beauty</span><span>Campaigns</span><span>Commercial / TVC</span></div>
+        <a className="book-link" href="#bookings">Booking enquiries ↗</a>
+      </div>
+    </section>
 
-    <section className="digitals" id="digitals"><div className="digital-intro" data-reveal><p className="section-kicker">03 / DIGITALS</p><h2>Clean. <em>Current.</em></h2><p>Natural casting images showing profile, proportions and presence.</p></div><div className="digital-strip">{digitals.map((item,i)=><figure key={item.label+i} data-reveal><Photo src={item.src} alt={`Samuella digital ${item.label}`}/><figcaption>{item.label}</figcaption></figure>)}</div><div className="stats" data-reveal>{stats.map(([k,v])=><div key={k}><span>{k}</span><b>{v}</b></div>)}</div></section>
+    <section className="chapters">
+      <div className="section-title compact" data-reveal><p className="section-kicker">03 / PORTFOLIO CHAPTERS</p><h2>Explore by <em>mood.</em></h2></div>
+      <div className="chapter-grid">{chapters.map(item=><a href="#portfolio" className="chapter-card" key={item.title} data-reveal><Photo src={item.image} alt={`${item.title} portfolio`}/><div><strong>{item.title}</strong><small>{item.subtitle}</small></div></a>)}</div>
+    </section>
 
-    <section className="experience"><p className="section-kicker" data-reveal>04 / EXPERIENCE</p><div data-reveal><h2>Runway to <em>editorial.</em></h2><p className="credit-line">Lagos Fashion Week · BareFashion Evening · Nova Fashion Show</p><p className="label">SELECTED BRANDS & COLLABORATIONS</p><p className="client-line">{clients.join(' · ')}</p></div></section>
+    <section className="digitals" id="digitals">
+      <div className="section-title compact" data-reveal><p className="section-kicker">04 / DIGITALS</p><h2>Clean. <em>Current.</em></h2></div>
+      <div className="digital-grid">{digitals.map(item=><figure key={item.src} data-reveal><Photo src={item.src} alt={`Samuella digital — ${item.label}`}/><figcaption>{item.label}</figcaption></figure>)}</div>
+      <div className="stats" data-reveal>{stats.map(([k,v])=><div key={k}><span>{k}</span><b>{v}</b></div>)}</div>
+    </section>
 
-    <section className="highlight"><div data-reveal><p className="section-kicker">05 / HIGHLIGHT</p><span>MISS MOTHERLAND NIGERIA 2025</span><h2>Best Runway <em>Model.</em></h2><p>Represented Cross River State at Miss Motherland Nigeria 2025 and received recognition as Best Runway Model.</p></div></section>
+    <section className="experience" data-reveal><p className="section-kicker">05 / EXPERIENCE</p><div><h2>Selected credits.</h2><p className="credit-line">Lagos Fashion Week · BareFashion Evening · Nova Fashion Show</p><p className="label">BRANDS & COLLABORATIONS</p><p className="client-line">{clients.join(' · ')}</p></div></section>
 
-    <section className="bookings" id="bookings"><div data-reveal><p className="section-kicker">06 / BOOKINGS</p><h2>Available for editorials,<br/><em>campaigns, beauty,</em> and<br/>special projects.</h2><p>For bookings, collaborations and casting enquiries, reach out via email or Instagram.</p></div><div className="contact-cards" data-reveal><a href="mailto:ezeogesamuella@gmail.com"><small>BOOKING INQUIRIES</small><strong>Email</strong><span>ezeogesamuella@gmail.com</span><i>↗</i></a><a href="https://www.instagram.com/yourgirl_samuella/" target="_blank" rel="noreferrer"><small>PORTFOLIO & SOCIAL</small><strong>Instagram</strong><span>@yourgirl_samuella</span><i>↗</i></a></div></section>
+    <section className="highlight" data-reveal><p className="section-kicker">06 / HIGHLIGHT</p><div><span>MISS MOTHERLAND NIGERIA 2025</span><h2>Best Runway <em>Model.</em></h2><p>Represented Cross River State at Miss Motherland Nigeria 2025 and received recognition as Best Runway Model.</p></div></section>
+
+    <section className="bookings" id="bookings"><div data-reveal><p className="section-kicker">07 / BOOKINGS</p><h2>Have a brief?<br/><em>Let’s work.</em></h2><p>Available for runway, editorials, campaigns, lookbooks, beauty, commercial/TVC work, fashion shows and selected creative collaborations.</p></div><div className="contact-cards" data-reveal><a href="mailto:ezeogesamuella@gmail.com"><small>DIRECT BOOKING</small><strong>Email</strong><span>ezeogesamuella@gmail.com</span><i>↗</i></a><a href="https://www.instagram.com/yourgirl_samuella/" target="_blank" rel="noreferrer"><small>PORTFOLIO & SOCIAL</small><strong>Instagram</strong><span>@yourgirl_samuella</span><i>↗</i></a></div></section>
    </main>
    <footer><span>© {new Date().getFullYear()} SAMUELLA</span><span>LAGOS · NIGERIA</span><a href="#top">BACK TO TOP ↑</a></footer>
    {open!==null&&<div className="lightbox" onClick={()=>setOpen(null)}><button className="close" aria-label="Close">×</button><div className="lightbox-inner" onClick={e=>e.stopPropagation()}><Photo src={gallery[open].src} alt={gallery[open].title}/><p>{gallery[open].title} · {gallery[open].note}</p></div></div>}
   </div>
  </>
 }
-createRoot(document.getElementById('root')).render(<App/>)
+createRoot(document.getElementById('root')).render(<App/> )
