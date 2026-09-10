@@ -9,26 +9,26 @@ const stats = [
 ]
 
 const gallery = [
-  { src: '/images/50608cb5693f037a0ccbd225312580f2_1763199037056_0.webp.jpeg', title: 'Runway', note: 'Selected runway', shape: 'portrait', fallback: heroImage },
-  { src: '/images/IMG-20251024-WA0331.jpeg', title: 'Editorial', note: 'Fashion editorial', shape: 'landscape', fallback: polaroidImage },
-  { src: '/images/IMG-20250821-WA0028.jpeg', title: 'Pageant', note: 'Miss Motherland Nigeria', shape: 'portrait', fallback: heroImage },
-  { src: '/images/IMG-20250801-WA0154.jpeg', title: 'Beauty', note: 'Beauty portrait', shape: 'portrait', fallback: polaroidImage },
-  { src: '/images/IMG-20250713-WA0121.jpeg', title: 'Runway', note: 'Fashion show', shape: 'tall', fallback: heroImage },
-  { src: '/images/111A8987.jpeg', title: 'Fashion', note: 'Studio fashion', shape: 'portrait', fallback: heroImage },
-  { src: '/images/111A9304.jpeg', title: 'Fashion', note: 'Studio fashion', shape: 'portrait', fallback: polaroidImage },
-  { src: '/images/IMG_6031.jpeg', title: 'Beauty', note: 'Beauty campaign', shape: 'landscape', fallback: polaroidImage },
-  { src: '/images/IMG_0934.jpeg', title: 'Editorial', note: 'Creative portrait', shape: 'portrait', fallback: heroImage },
-  { src: '/images/IMG_0944.jpeg', title: 'Editorial', note: 'Creative portrait', shape: 'portrait', fallback: polaroidImage },
-  { src: '/images/IMG_0984.jpeg', title: 'Fashion', note: 'Designer look', shape: 'tall', fallback: heroImage },
-  { src: '/images/IMG_0987.jpeg', title: 'Fashion', note: 'Designer look', shape: 'portrait', fallback: polaroidImage },
+  { src: '/images/pics/IMG-20250713-WA0121.jpg', title: 'Runway', note: 'Fashion show', shape: 'portrait', fallback: heroImage },
+  { src: '/images/pics/IMG-20251024-WA0331.jpg', title: 'Editorial', note: 'Fashion editorial', shape: 'landscape', fallback: polaroidImage },
+  { src: '/images/pics/IMG-20250801-WA0154.jpg', title: 'Beauty', note: 'Beauty portrait', shape: 'portrait', fallback: polaroidImage },
+  { src: '/images/pics/IMG-20250801-WA0155.jpg', title: 'Beauty', note: 'Beauty portrait', shape: 'portrait', fallback: polaroidImage },
+  { src: '/images/pics/I38A9558.jpg', title: 'Fashion', note: 'Studio fashion', shape: 'tall', fallback: heroImage },
+  { src: '/images/pics/I38A9643.jpg', title: 'Fashion', note: 'Studio fashion', shape: 'portrait', fallback: heroImage },
+  { src: '/images/pics/IMG_6031.JPG', title: 'Beauty', note: 'Beauty campaign', shape: 'landscape', fallback: polaroidImage },
+  { src: '/images/pics/IMG_0934.JPG', title: 'Editorial', note: 'Creative portrait', shape: 'portrait', fallback: heroImage },
+  { src: '/images/pics/IMG_0944.JPG', title: 'Editorial', note: 'Creative portrait', shape: 'portrait', fallback: polaroidImage },
+  { src: '/images/pics/IMG_0984.JPG', title: 'Fashion', note: 'Designer look', shape: 'tall', fallback: heroImage },
+  { src: '/images/pics/IMG_0987.JPG', title: 'Fashion', note: 'Designer look', shape: 'portrait', fallback: polaroidImage },
+  { src: '/images/pics/IMG_4210.JPG', title: 'Editorial', note: 'Selected work', shape: 'portrait', fallback: heroImage },
 ]
 
 const digitals = [
-  { src: '/images/IMG_0511.jpeg', label: 'Three-quarter', fallback: polaroidImage },
-  { src: '/images/IMG_0512.jpeg', label: 'Full length', fallback: heroImage },
-  { src: '/images/IMG_0508.jpeg', label: 'Profile', fallback: polaroidImage },
-  { src: '/images/IMG_0519.jpeg', label: 'Portrait', fallback: polaroidImage },
-  { src: '/images/IMG_0518.jpeg', label: 'Profile', fallback: polaroidImage },
+  { src: '/images/pics/IMG_0511.JPG', label: 'Three-quarter', fallback: polaroidImage },
+  { src: '/images/pics/IMG_0512.JPG', label: 'Full length', fallback: heroImage },
+  { src: '/images/pics/IMG_0510.JPG', label: 'Full length', fallback: heroImage },
+  { src: '/images/pics/IMG_0519.JPG', label: 'Portrait', fallback: polaroidImage },
+  { src: '/images/pics/IMG_0518.JPG', label: 'Profile', fallback: polaroidImage },
 ]
 
 const clients = ['SassyByEtty', 'Amostafiri', 'Awotiwa', 'The Dust of the Earth', 'Darling Hair']
@@ -64,7 +64,7 @@ function App() {
 
     <main id="top">
       <section className="hero">
-        <Photo src={heroImage} fallback={heroImage} alt="Samuella fashion model" className="hero-photo" />
+        <Photo src="/images/pics/IMG_6031.JPG" fallback={heroImage} alt="Samuella fashion model" className="hero-photo" />
         <div className="hero-shade" />
         <div className="hero-copy" data-reveal>
           <p className="eyebrow">LAGOS · NIGERIA · MODEL</p>
